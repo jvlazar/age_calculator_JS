@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Age calculator app</title>
+   <!-- Linking Javascript file-->
+  <script type="text/javascript" src="index.js"></script>
+  <link rel="stylesheet" href="style.css"></style>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+
+</head>
+<body>
+<div class="content">
+    <!-- Basic text input from user -->
+  <div class="date_input">
+    <div class="row">
+      <div class="col">
+        <label>Day</label>
+        <br>
+        <input type="text" id="day" placeholder="DD">
+      </div>
+      <div class="col">
+        <label>Month</label>
+          <br>
+          <input type="text" id="month" placeholder="MM">
+         
+        </div>
+        <div class="col">
+          <label>Year</label>
+          <br>
+          <input type="text" id="year" placeholder="YYYY">
+          
+        </div>
+    </div>
+    <p id="error_message_day"></p>
+    <p id="error_message_month"></p>
+    <p id="error_message_year"></p>
+  </div>
+  <br>
+
+  <div class="divider">
+    <hr>
+    <button class="calculate_button" onclick="calculate()">Submit</button>
+  </div>  
+  
+  <!-- Results from the input -->
+  <div class="result">
+    <label>  
+      <div class="result_values"> 
+       <p id="result_value_days" > -- </p>
+      </div> 
+      years 
+    </label>
+    <br>
+    <label>  
+      <div class="result_values"> 
+       <p id="result_value_months"> -- </p>
+      </div> 
+      months 
+    </label>
+    <br>
+    <label>  
+      <div class="result_values"> 
+       <p id="result_value_years"> -- </p> 
+      </div>  
+      days 
+    </label>
+    <br>
+  </div>
+
+
+  <br>
+  <br>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Lazar</a>.
+  </div>
+</div>
+</body>
+</html>

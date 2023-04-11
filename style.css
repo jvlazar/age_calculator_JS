@@ -1,0 +1,61 @@
+
+.content{
+    margin-top: 13%;
+    margin-left: 33%;
+    width: 500px;
+    background-color: lightblue;
+   
+}
+
+.divider {
+    align-items: left;
+    display: flex;
+}
+
+.divider hr{
+    margin-left: 0px;
+    width: 400px;
+    border-top: 3px solid #bbb;
+    border-bottom: 3px solid #bbb;
+    border-left: 3px solid #bbb;
+    border-right: 3px solid #bbb;
+    border-radius: 5px;
+    
+}
+
+.row {
+    width: 600px;
+   
+    font-family: Poppins;   
+}
+
+.row .col{
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.row input[type=text]{
+    border-radius: 5%;
+    height: 40px;
+    width: 80px;
+    border-color: lightgrey;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 15px;
+    font-weight: bold;
+   
+}
+
+.row label{
+    text-align: left;
+}
+
+.date_input p{
+    font-size: 10px;
+    display: inline-block;
+    margin-right: 40px;
+}
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+    
