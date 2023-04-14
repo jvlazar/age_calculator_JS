@@ -183,8 +183,8 @@ function calculate(){
     // total days calculated from years
     totalDays = leapYearDays + ((date.getFullYear() - inputYears) - (Math.floor((date.getFullYear() - inputYears) / 4))) * 365;
     console.log(`there are ${totalDays} number of days`);
-
     
+    /*
     // get days from months
     switch (date.getMonth()){
         case 0: // jan 
@@ -226,7 +226,7 @@ function calculate(){
         default:
             break;
     }
-    
+    */
 
     // add the additional day if it's a leap year and the month entered is not jan or feb
     if (leapYear && (month != "jan" || month != "feb")){
@@ -238,108 +238,32 @@ function calculate(){
     //      - Cases where the day is the same (both in same month or different month)
     //      - Cases where the day is < current day
 
-    // if month is bigger than current month or is same month but date hasn't passed 
-    if ((inputMonths - 1) > date.getMonth() || ((inputMonths - 1) == date.getMonth() && inputDays > date.getDate())){
-       
-        // if month is bigger
-        if ((inputMonths -1 ) > date.getMonth()){
-            console.log(`month is bigger`);
-            if (inputDays < date.getDate()){
-                console.log(`date is smaller`);
-                totalDays -= (inputDays-1);
-            } else {
-              
-            
-           }
-            
-        }
-        // if current day has passed, get the difference and add it
+    // get days in year
+    // totalDays = ((date.getYear() - inputYear) * 365) + 
+
+    // check to see if the current month is the same
+    if ((inputMonths-1) == date.getMonth()){
+        // check to see if day has passed (i.e. they're older)
         if (inputDays < date.getDate()){
-            totalDays += date.getDate() - inputDays;
+            // do number of years + (inputDays - date.getDate))
+        } else if (inputDays > date.getDate()){
+            // if the day hasn't passed yet
+            // do number of years - (inputDays - date.getDate)
         } else {
-            totalDays -= Math.abs(date.getDate() - inputDays);
-            getDaysFromMonths(month);
-            console.log(`month may be the same, but the day hasn't passed yet, removing the amount of days until it does`);
+            // if the day is the same
+            // total days = 0
         }
-      
-    }  
-    
-     // if months are same and the date has passed or is the current date
-    else if (((inputMonths - 1) == date.getMonth() && inputDays <= date.getDate())){
-        console.log(`we are here where month is the same but day is in the future/same date`)
-        // if days are less
-        if (inputDays < date.getDate()){
-            console.log(`the day is less than the current date`)
-            getDaysFromMonths(month);
-        } else {
-            console.log(`the day is the same as the current date`)
-        }
-    } 
-    
-   
-    else {
-        // add days
-        
-        totalDays += Math.abs(date.getDate() - inputDays);
-        //getDaysFromMonths(month);
-        console.log(`month is not the same as current month. Total days ${totalDays} and actual date ${date.getDate()}`);
-        if (inputDays > date.getDate()){
-            // TODO - fix this
-            totalDays -= Math.abs(date.getDate() - inputDays);
-        }
-       /*
-       if (inputDays < date.getDate()){
-           getDaysFromMonths(month);
-       } else {
-        switch (month){
-            case "jan": // jan 
-                totalDays += date.getDate() + 1;
-                break;
-            case "feb": // feb
-                totalDays += 31;
-                break;
-            case "mar": // march
-                totalDays += 59;
-                break;
-            case "apr": // april
-                totalDays += 90;
-                
-                break;
-            case "may": // may
-                totalDays += 120;
-                break;
-            case "jun": // june
-                totalDays += 151;
-                break;
-            case "july": // july
-                totalDays += 181;
-                break;
-            case "aug": // aug
-                totalDays += 212;
-                break;
-            case "sept": // sept
-                totalDays += 245;
-                break;
-            case "oct": // oct
-                totalDays += 273;
-                break;
-            case "nov": // nov
-                totalDays += 304;
-                break;
-            case "dec": // dec
-                totalDays += 334;
-                break;
-            default:
-                break;
-        }
-    }
-    */
-       console.log(`we are here`);
-       
+    } else if ((inputMonths - 1) < date.getMonth()){
+        //if the input month is before the current month
+        // add the days from the month
+        // add the input day
+    } else {
+        // the input month hasn't passed
+        // remove the days from the month
+        // add the input day
     }
 
-    
-   
+
 
 
 
