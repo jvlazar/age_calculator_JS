@@ -6,8 +6,6 @@ let inputDays;
 let inputMonths;
 let inputYears;
 let month = "";
-let totalDays;
-let leapYearDays;
 let outputDays;
 let outputMonths;
 let outputYears;
@@ -47,6 +45,7 @@ function checkValid(){
                 break;
             case 5: 
                 month = "may";
+                break;
             case 6:
                 month = "jun";
                 break;
@@ -91,7 +90,7 @@ function checkValid(){
             document.getElementById("error_message_day").innerHTML = " Must be a valid date";
         }
     } else if (month == "feb"){
-       
+        
         // check to see if leap year, and input days is valid
         if ((!leapYear && inputDays > 28) || (leapYear && inputDays > 29) ){
             // if it's not leap year and days > 28, invalid
@@ -128,133 +127,71 @@ function checkValid(){
 function calculate(){
     checkValid();
   
-    
-    // get leap year days
-    
-    leapYearDays = Math.floor((date.getFullYear() - inputYears) / 4) * 366;
-    console.log(`there are ${leapYearDays} number of days due to leap year`);
-
-    // total days calculated from years
-    totalDays = leapYearDays + ((date.getFullYear() - inputYears) - (Math.floor((date.getFullYear() - inputYears) / 4))) * 365;
-    console.log(`there are ${totalDays} number of days`);
-    
-    // add the additional day if it's a leap year and the month entered is not jan or feb
-    if (leapYear && (month != "jan" || month != "feb")){
-        totalDays += 1;
-    }
-
-
-    // check to see if the current month is the same
-    if ((inputMonths-1) == date.getMonth()){
-        // check to see if day has passed (i.e. they're older)
-        if (inputDays < date.getDate()){
-            // do number of years + (inputDays - date.getDate))
-            totalDays += Math.abs(inputDays - date.getDate());
-        } else if (inputDays > date.getDate()){
-            // if the day hasn't passed yet
-            totalDays -= Math.abs(inputDays - date.getDate());
-            // do number of years - (inputDays - date.getDate)
-        } else {
-            // if the day is the same
-            // total days = 0
-        }
-    } else if ((inputMonths - 1) < date.getMonth()){
-        //if the input month is before the current month
-        // add the days from the month
-        switch (date.getMonth()){
-            case 0: // jan 
-                break;
-            case 1: // feb
-                totalDays += 31;
-                break;
-            case 2: // march
-                totalDays += 59;
-                break;
-            case 3: // april
-                totalDays += 90;
-                console.log(`printing here with total days ${totalDays}`);
-                break;
-            case 4: // may
-                totalDays += 120;
-                break;
-            case 5: // june
-                totalDays += 151;
-                break;
-            case 6: // july
-                totalDays += 181;
-                break;
-            case 7: // aug
-                totalDays += 212;
-                break;
-            case 8: // sept
-                totalDays += 245;
-                break;
-            case 9: // oct
-                totalDays += 273;
-                break;
-            case 10: // nov
-                totalDays += 304;
-                break;
-            case 11: // dec
-                totalDays += 334;
-                break;
-            default:
-                break;
-        }
-        // add the input day
-        totalDays += Math.abs(inputDays - date.getDate());
-       
-    } else {
-        // the input month hasn't passed
-        // remove the days from the month
-        // iterate through the array to see how many months are left
-        for (let i = date.getMonth(); i < inputMonths-1; i++){
-            totalDays -= monthDays[i];
-        }
-        
-        // add the input day
-        // if the day is less than current (i.e. it passed, add days)
-        if (inputDays < date.getDate()){
-            totalDays += Math.abs(inputDays - date.getDate());
-        } else {
-            totalDays -= Math.abs(inputDays - date.getDate());
-        }
-        
-    }
-
+ 
+    // years
     outputYears = Math.abs(inputYears - date.getFullYear()); 
-    
     if ((inputMonths == date.getMonth() + 1 && inputDays > date.getDate()) || inputMonths > date.getMonth() + 1){
             outputYears -= 1;
     } 
 
-
+    // months
     if (inputMonths < date.getMonth()+1){
-        outputMonths = Math.abs(inputMonths - date.getMonth()) + 1;
-    } else if (inputMonths == date.getMonth()+1 && inputDays > date.getDate()){
+        outputMonths = Math.abs(inputMonths - (date.getMonth()+1));
+        // if the day hasn't passed yet, month -1
+        if (inputDays > date.getDate()){
+            outputMonths -= 1;
+        }
+    } else if (inputMonths == (date.getMonth()+1) && inputDays > date.getDate()){
+        // if if's the same month and the day hasn't passed yet, month = 11
         outputMonths = 11;
-    } else if (inputMonths == date.getMonth() + 1 && inputDays == date.getDate()){
+    } else if (inputMonths == (date.getMonth() + 1) && inputDays == date.getDate()){
+        // if it's the same month and same day, month = 0
         outputMonths = 0;
+    }  else if (inputMonths == (date.getMonth()+1) && inputDays < date.getDate()){
+        // if it's the same month and the day has passed, month -1
+        outputMonths = Math.abs(inputMonths - date.getMonth()) - 1;
     }
     else {
+        // if the month hasn't passed yet
         outputMonths = 12 - Math.abs(inputMonths - date.getMonth());
-        
-        
     }
+
+    
+    
+
+    // days
     if (inputDays < date.getDate()){
-        outputDays = Math.abs(inputDays - date.getDate());
+        outputDays = Math.abs(inputDays - date.getDate()) ;
+        if (inputMonths > date.getMonth()){
+            outputMonths += 1;
+        }
     } else if (inputDays == date.getDate()){
         outputDays = 0;
     } 
     else {
-        outputDays = monthDays[inputMonths-1] - (inputDays - date.getDate()) + 1;
+        // if the day hasn't passed yet
+        if (!leapYear && month == "feb"){
+            outputDays = monthDays[inputMonths-1] - (inputDays - date.getDate()) + 3;
+        } else if (leapYear && month =="feb"){
+            outputDays = 29 - (inputDays - date.getDate());
+        } else {
+            console.log(`${monthDays[inputMonths-1]} days in the month of ${month}`);
+            if (monthDays[inputMonths-1] == 30){
+                outputDays = monthDays[inputMonths-1] - (inputDays - date.getDate()) + 1;
+            } else {
+                outputDays = monthDays[inputMonths-1] - (inputDays - date.getDate()) ;
+            }
+        }
+
     }
+
+    
     document.getElementById("result_value_years").innerHTML = outputYears;
     document.getElementById("result_value_months").innerHTML = outputMonths;
     document.getElementById("result_value_days").innerHTML = outputDays;
     
     
-    console.log(`the total amount of days since your birthday is ${totalDays}`);
+   
     console.log(`${outputYears} years, ${outputMonths} months, and ${outputDays} days`);
 
     
