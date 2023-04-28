@@ -19,67 +19,80 @@
   <div class="date_input">
     <div class="row">
       <div class="col">
-        <label>Day</label>
+        <label id="day_label">Day</label>
         <br>
         <input type="text" id="day" placeholder="DD">
+        <br>
+        <p id="error_message_day"></p>
       </div>
       <div class="col">
-        <label>Month</label>
+        <label id="month_label">Month</label>
           <br>
           <input type="text" id="month" placeholder="MM">
-         
+          <br>
+          <p id="error_message_month"></p>
         </div>
         <div class="col">
-          <label>Year</label>
+          <label id="year_label">Year</label>
           <br>
           <input type="text" id="year" placeholder="YYYY">
-          
+          <br>
+          <p id="error_message_year"></p>
         </div>
     </div>
     <br>
-    <p id="error_message_day"></p>
-    <p id="error_message_month"></p>
-    <p id="error_message_year"></p>
+    
+  
+   
   </div>
   <br>
 
   <div class="divider">
-    <hr>
-    <button class="calculate_button" onclick="calculate()">Submit</button>
+    <div class="grayline"></div>
+    <button class="calculate_button" onclick="calculate()"></button>
   </div>  
   
   <!-- Results from the input -->
   <div class="result">
     <label>  
+      <div class="result_row">
       <div class="result_values"> 
-       <p id="result_value_years" > -- </p>
+       <p id="result_value_years" > - - </p> 
       </div> 
-      years 
+      <p>years</p>
+    </div>
     </label>
+
     <br>
     <label>  
+      <div class="result_row">
       <div class="result_values"> 
-       <p id="result_value_months"> -- </p>
+       <p id="result_value_months"> - - </p>
       </div> 
-      months 
+      <p>months</p> 
+    </div> 
     </label>
+
     <br>
     <label>  
+      <div class="result_row">
       <div class="result_values"> 
-       <p id="result_value_days"> -- </p> 
+       <p id="result_value_days"> - - </p> 
       </div>  
-      days 
+      <p>days</p>
+    </div> 
     </label>
     <br>
   </div>
 
 
-  <br>
-  <br>
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Lazar</a>.
-  </div>
 </div>
 </body>
+<br>
+<br>
+<div class="attribution">
+  Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+  Coded by <a href="#">Lazar</a>.
+</div>
+<br>
 </html>

@@ -1,45 +1,48 @@
 
+body {
+    background-color:lightgray;
+}
+
 .content{
-    margin-top: 13%;
+    margin-top: 5%;
+    margin-bottom: 5%;
     margin-left: 33%;
-    width: 500px;
-    background-color: lightgrey;
+    margin-right: 33%;
+    size: 1440px;
     border-radius: 3%;
+    border-bottom-right-radius: 20%;
     padding-top: 20px;
+    padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
-    
+    background-color: white;
+    font-size: 32px;
+    font-weight: 700;
 }
 
 .divider {
     align-items: left;
     display: flex;
+    text-align: center;
 }
 
 label {
-    font-family: Poppins;   
+    font-family: 'Poppins';   
 }
 
-.divider hr{
-    margin-left: 0px;
-    width: 400px;
-    border-top: 3px solid #bbb;
-    border-bottom: 3px solid #bbb;
-    border-left: 3px solid #bbb;
-    border-right: 3px solid #bbb;
-    border-radius: 5px;
-    
+.col label{
+    font-size: 15px;
 }
 
 .row {
     width: 600px;
-   
-    font-family: Poppins;   
+    font-family: 'Poppins';   
 }
 
 .row .col{
   display: inline-block;
   margin-right: 20px;
+  color: hsl(0, 1%, 44%)
 }
 
 .row input[type=text]{
@@ -54,14 +57,76 @@ label {
    
 }
 
+
+
 .row label{
     text-align: left;
+   
+}
+
+.date_input {
+    margin-bottom: -100px;
 }
 
 .date_input p{
     font-size: 10px;
     display: inline-block;
-    margin-right: 40px;
+}
+
+
+.grayline {
+    height: 0px;
+    width: 490px;
+    background-color: white;
+    border-color: white;
+    border-style: solid;
+    border-radius: 5%;
+    border-bottom: 1px solid lightgray;
+    margin: auto;
+}
+
+.calculate_button{
+    background-color:  hsl(259, 100%, 65%);
+    border-style: solid;
+    border-color:  hsl(259, 100%, 65%);
+    background-image: url("assets/images/icon-arrow.svg");
+    background-size: 50%;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 80px;
+    border-radius: 50%;
+    
+}
+
+.result {
+    margin-bottom: 30px;
+    margin-top: -50px;
+}
+
+.result_row{
+    display: flex;
+    text-align: center;
+    margin-top: -10px;
+    margin-left: 20px;
+    height: 10px;
+    width: auto;
+}
+
+.result_row p {
+    margin-left: -15px;
+    font-family: 'Poppins';   
+    font-weight: bolder;
+    font-style: normal;
+   
+}
+
+.result_values  {
+    color: hsl(259, 100%, 65%);
+    margin-right: 30px;
+    font-weight: bolder;
+   
 }
 
 .attribution { font-size: 11px; text-align: center; }
