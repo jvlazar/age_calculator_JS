@@ -37,6 +37,8 @@ function checkDay(day, year){
         if (inputDays > 30){
             document.getElementById("error_message_day").innerHTML = " Must be a valid date";
             valid = false;
+        } else {
+            document.getElementById("error_message_day").innerHTML = "";
         }
     } else if (month == "feb"){
         
