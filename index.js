@@ -11,15 +11,24 @@ let outputMonths;
 let outputYears;
 let leapYear = false;
 let valid;
+let value;
 const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-function changeColor(element, value){
-    if (value == 0){
-        document.getElementById(element).style.color = 'black';
+function changeColor(element, val){
+    console.log(`the value is ${val}, and the element is ${element}`);
+    if (val == 0){
+        document.getElementById(element).style.color = 'hsl(0, 1%, 44%)';
     } else {
         document.getElementById(element).style.color = 'hsl(0, 100%, 67%)';
+        if (element.includes("error_message")){
+             document.getElementById(element).style.fontStyle = 'italic';
+        } else {
+            document.getElementById(element).style.fontStyle = 'normal';
+        }
     }
 }
+
+
 
 function checkDay(day, year){
     
@@ -65,9 +74,9 @@ function checkDay(day, year){
 function checkMonth(months){
     if (months < 1 || months > 12){
         document.getElementById("error_message_month").innerHTML = 'Must be a valid month';
-        
         valid = false;
     } else {
+        document.getElementById("error_message_month").innerHTML = '';
         // switch statement to assign the month variable, to be used further down
         switch(months){
             case 1:
@@ -175,7 +184,6 @@ function checkValid(){
         if (!checkYear(inputYears)){
             valid = false;
         }
-
             return valid;
     }
     
@@ -188,13 +196,7 @@ function calculate(){
     valid = true;
 
     if(checkValid()){
-        changeColor("error_message_day", 0);
-        changeColor("day_label", 0);
-        changeColor("error_message_month", 0);
-        changeColor("month_label", 0);
-        changeColor("error_message_year", 0);
-        changeColor("year_label", 0);
-
+        value = 0;
         // years
         outputYears = Math.abs(inputYears - date.getFullYear()); 
         if ((inputMonths == date.getMonth() + 1 && inputDays > date.getDate()) || inputMonths > date.getMonth() + 1){
@@ -234,6 +236,7 @@ function calculate(){
             }
         } else if (inputDays == date.getDate()){
             outputDays = 0;
+            outputMonths += 1;
         } 
         else {
             // if the day hasn't passed yet
@@ -252,25 +255,26 @@ function calculate(){
 
         }
 
-        
-        
+       
         
     } else {
-        changeColor("error_message_day", 1);
-        changeColor("day_label", 1);
-        changeColor("error_message_month", 1);
-        changeColor("month_label", 1);
-        changeColor("error_message_year", 1);
-        changeColor("year_label", 1);
-        
+        // if there's an error, disaply the error message and leave the output to the default
+        value = 1;
         outputDays = "- -";
         outputMonths = "- -";
         outputYears = "- -";
     }
+
+    changeColor("error_message_day", value);
+    changeColor("day_label", value);
+    changeColor("error_message_month", value);
+    changeColor("month_label", value);
+    changeColor("month_label", value);
+    changeColor("year_label", value);
+    
+    // displaying the results
     document.getElementById("result_value_years").innerHTML = outputYears;
     document.getElementById("result_value_months").innerHTML = outputMonths;
     document.getElementById("result_value_days").innerHTML = outputDays;
-    console.log(`${outputYears} years, ${outputMonths} months, and ${outputDays} days`);
-
     
 }
