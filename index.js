@@ -15,7 +15,7 @@ let value;
 const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 function changeColor(element, val){
-    console.log(`the value is ${val}, and the element is ${element}`);
+   
     if (val == 0){
         document.getElementById(element).style.color = 'hsl(0, 1%, 44%)';
     } else {
@@ -38,7 +38,7 @@ function checkDay(day, year){
     }
     // makes sure that the days value is valid
     if (day < 1 || day >= 32){
-        //console.log("Invalid day");
+      
         document.getElementById("error_message_day").innerHTML = " Must be a valid day";
         valid = false;
     } else if (month == "apr" || month == "jun" || month == "sept" || month == "nov"){
@@ -70,7 +70,9 @@ function checkDay(day, year){
 }
 
 
-
+// checks the month to see if input is correct, and if so stores it in a string variable for month for 
+// ease of reading in future code
+// returns false if invalid, else returns true
 function checkMonth(months){
     if (months < 1 || months > 12){
         document.getElementById("error_message_month").innerHTML = 'Must be a valid month';
@@ -118,13 +120,13 @@ function checkMonth(months){
                 default:
                     break;
             }
-            console.log(`the month is ${month}, which is the ${months} month of the year`);
         }
 
         return valid;
-
 }
 
+// checks the year to ensure the year isn't in the future
+// returns false if invalid, else returns true
 function checkYear(year){
     // make sure year is valid
     if (year > date.getFullYear()){
@@ -156,7 +158,6 @@ function checkValid(){
                 changeColor("error_message_year", 1);
                 changeColor("year_label", 1);
             }
-            
             valid = false;
         }
     
@@ -179,7 +180,7 @@ function checkValid(){
             
             valid = false;
         } 
-        console.log(valid);
+       
         // check year
         if (!checkYear(inputYears)){
             valid = false;
@@ -270,6 +271,7 @@ function calculate(){
     changeColor("error_message_month", value);
     changeColor("month_label", value);
     changeColor("month_label", value);
+    changeColor("error_message_year", value);
     changeColor("year_label", value);
     
     // displaying the results
