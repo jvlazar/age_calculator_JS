@@ -66,7 +66,7 @@ function checkDay(day, year){
         document.getElementById("error_message_day").innerHTML = "";
         
     }
-    console.log(`leap year status is ${leapYear} and the validity is ${valid}`);
+   
     return valid;
 }
 
