@@ -9,7 +9,7 @@ let month = "";
 let outputDays;
 let outputMonths;
 let outputYears;
-let leapYear = false;
+let leapYear;
 let valid;
 let value;
 const monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -31,7 +31,7 @@ function changeColor(element, val){
 
 
 function checkDay(day, year){
-    
+    leapYear = false;
      // get leap year
      if (year % 4 == 0){
         leapYear = true;
@@ -66,6 +66,7 @@ function checkDay(day, year){
         document.getElementById("error_message_day").innerHTML = "";
         
     }
+    console.log(`leap year status is ${leapYear} and the validity is ${valid}`);
     return valid;
 }
 
